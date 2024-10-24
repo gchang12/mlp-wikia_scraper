@@ -8,8 +8,11 @@ import logging
 
 import requests
 from bs4 import BeautifulSoup
+from pathlib import Path
 
-from constants import OUTPUT_PATH
+OUTPUT_PATH = Path("output/")
+
+#from constants import OUTPUT_PATH
 
 EPISODEINDEX_PAGE = "https://mlp.fandom.com/wiki/List_of_episodes"
 
@@ -64,13 +67,13 @@ def main():
     """
     OUTPUT_PATH.mkdir(exist_ok=True)
     for season_num, episodeurl_list in get_episodeindex().items():
-        season_path = OUTPUT_PATH.joinpath("Season %d" % season_num)
+        season_path = OUTPUT_PATH.joinpath("S%d" % season_num)
         season_path.mkdir(exist_ok=True)
         logging.info("%s now exists. Loading episode transcript text files into here.", season_path)
         logging.info("Now scraping from Season %d.", season_num)
         for episode_num, (episodename, episodeurl) in enumerate(episodeurl_list, start=1):
             episodetranscript = get_episodetranscript(episodeurl)
-            episode_path = season_path.joinpath("(%02d) %s.txt" % (episode_num, episodename))
+            episode_path = season_path.joinpath("E%02d_%s.txt" % (episode_num, episodename))
             episode_path.write_text(episodetranscript)
             logging.debug("Transcript written to %s", episode_path)
         logging.info("Scraped a total of %d episodes from Season %d", episode_num, season_num)
