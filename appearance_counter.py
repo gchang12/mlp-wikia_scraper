@@ -22,6 +22,10 @@ LEGEND  = {
 CHARACTERS = (
     "Applejack",
     "Twilight_Sparkle",
+    "Fluttershy",
+    "Rarity",
+    "Pinkie_Pie",
+    "Rainbow_Dash",
 )
 
 MLPWIKIA_URLROOT = "https://mlp.fandom.com/wiki/%s"
