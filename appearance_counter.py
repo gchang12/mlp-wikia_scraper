@@ -44,13 +44,13 @@ def count_appearances(character):
         selector = CSS_SELECTOR_ROOT % code.lower()
         resultset = soup.css.select(selector)
         num_appearances += len(resultset)
-    logging.debug(
+    logging.info(
         "%s appears a total of %d times in the main MLP G4 series.",
         character, num_appearances,
     )
     return num_appearances
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     for character in CHARACTERS:
         count_appearances(character)
